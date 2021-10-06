@@ -1,7 +1,10 @@
-let gridSizeColumn = 16;
+let gridSizeColumn = 16; // initial value
 let gridSize = gridSizeColumn ** 2; // size of grid
 const gridContainer = document.querySelector('.grid-container');
-generateGridCells(gridSize);
+
+generateGridCells(gridSize); // generates initial grid
+gridContainer.setAttribute('style', `grid-template-columns: repeat(${gridSizeColumn}, 1fr)`);
+let gridCells = document.querySelectorAll('.grid-container > div');
 
 function generateGridCells(gridSize) {
   while (gridContainer.firstChild) { // removes all cells from grid
@@ -14,7 +17,7 @@ function generateGridCells(gridSize) {
   }
 };
 
-function updateGridSize(e) {
+function updateGridSize(e) { // deletes old grid and updates to slider value
   console.log(e.target.value)
   gridSizeColumn = e.target.value;
   gridSize = gridSizeColumn ** 2; 
@@ -25,12 +28,7 @@ function updateGridSize(e) {
   cellEventListener();
 }
 
-gridContainer.setAttribute('style', `grid-template-columns: repeat(${gridSizeColumn}, 1fr)`);
-
-
-let gridCells = document.querySelectorAll('.grid-container > div');
-
-function changeCellColor(cellClass, color) { // changes cell to color
+function changeCellColor(cellClass, color) {
   cellClass.setAttribute('style', `background-color: ${color}`);
 };
 
@@ -47,7 +45,9 @@ function cellEventListener() {
     });
   };
 };
-cellEventListener(); // initialisation call
+cellEventListener(); // initialisation call when page loads
+
+// Add divs
 
 const buttons = document.querySelector('.buttons');
 
